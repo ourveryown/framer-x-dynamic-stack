@@ -4,7 +4,7 @@ Framer X code component that acts as an alternative to the `Stack` component whe
 
 ## Installation
 
-Install [this package](http://www.todo.com/) from the Framer X store.
+Install [this package](https://store.framer.com/package/jmargenberg-ovo/dynamic-stack) from the Framer X store.
 
 ## Usage
 
