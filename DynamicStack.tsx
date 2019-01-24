@@ -12,16 +12,23 @@ enum Alignment {
   End = "end"
 }
 
+interface Padding {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+}
+
 interface Props {
   items: React.Component[]; // the frames to be displayed in in the stack
-  visibleItems: boolean[]; // array of booleans for whether each frame in the stack should be visivle
+  visibleItems: boolean[]; // array of booleans for whether each frame in the stack should be visible
   gap: number; // the number of pixels seperating each item in the stack
   direction: Direction; // the direction of the stack
   alignment: Alignment; // how items will be aligned in the axis perpindicular to the direction of the stack
   scrollable: boolean; // whether or not to embed the stack content inside of a scroll view
 
-  paddingUniversal: number;
-  paddingPerSide: boolean;
+  paddingUniversal: number; // padding to be applied to all side if `paddingPerSide` is false
+  paddingPerSide: boolean; // whether `universalPadding` should be used for padding or `paddingTop`, `paddingLeft`...
   paddingTop: number;
   paddingRight: number;
   paddingLeft: number;
@@ -29,13 +36,6 @@ interface Props {
 
   width: number;
   height: number;
-}
-
-interface Padding {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
 }
 
 /**
@@ -65,7 +65,7 @@ export const DefaultContent = () => {
 };
 
 /**
- * @description Provides an alternative to the Stack component where items can be hidden via code overrides by by setting the `visibleItems` prop.
+ * @description Provides an alternative to the Stack component where items can be hidden via code overrides by setting the `visibleItems` prop.
  */
 export class DynamicStack extends React.Component<Props> {
   static defaultProps = {
@@ -213,16 +213,6 @@ export class DynamicStack extends React.Component<Props> {
     return items.filter(
       (_, index) => (index < visibleItems.length ? visibleItems[index] : true) //TODO: fix this
     );
-  };
-
-  isCanvasOrPreview = (source: any) => {
-    const searchLoop: (node: any) => "canvas" | "preview" = node => {
-      if (!node) return "canvas";
-      if (node.key === "preview") return "preview";
-      return searchLoop(node._debugOwner);
-    };
-
-    return searchLoop(source._reactInternalFiber);
   };
 
   stackContentHeight = (
