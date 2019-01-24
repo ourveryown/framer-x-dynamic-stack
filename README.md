@@ -1,6 +1,6 @@
 # Dynamic Stack
 
-Framer X code component that acts ACTS an alternative to the `Stack` component but items can be dyanmicaly hidden via code overrides.
+Framer X code component that acts as an alternative to the `Stack` component where items can be dyanmicaly hidden via code overrides.
 
 ## Installation
 
@@ -26,6 +26,6 @@ As well as exposing the above props, all the property controls of the `Stack` co
 
 ## Example Project
 
-You can download an example project showing how to use this component [here](http://www.todo.com/).
+You can download an example project showing how to use this component [here](https://github.com/ourveryown/framer-x-dynamic-stack/blob/master/DyanmicStack.framerx).
 
 ![News Feed Example](images/small.gif)
